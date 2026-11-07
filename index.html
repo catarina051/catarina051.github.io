@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catarina Gonçalves · AI Builder</title>
+<meta name="description" content="Portfólio de Catarina Rodrigues Gonçalves: agentes multi-LLM, automações com n8n, dashboards e produtos de IA construídos do zero e medidos contra gabarito.">
+<meta property="og:title" content="Catarina Gonçalves · AI Builder">
+<meta property="og:description" content="Agentes multi-LLM, automações n8n, dashboards e produtos de IA — com números medidos.">
+<meta property="og:image" content="assets/catarina.webp">
+<meta name="theme-color" content="#2D493D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232D493D'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' text-anchor='middle' fill='%23F0EADE'%3ECG%3C/text%3E%3Crect x='18' y='48' width='28' height='3' fill='%23C2843C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Paleta extraída da capa e da foto do LinkedIn:
+   bege #F0EADE · verde-floresta #2D493D · âmbar #C2843C · tinta #242424 · marrons da foto #90694D */
+:root{
+  --bg:#F0EADE; --bg-2:#E8E0D0; --surface:#F8F4EC; --surface-2:#FFFDF8;
+  --ink:#242424; --ink-2:#4A4A44; --muted:#5E5C54;
+  --green:#2D493D; --green-2:#3E6352; --green-soft:#DCE4DC;
+  --amber:#C2843C; --amber-ink:#8A5A1F; --amber-soft:#F3E2C8;
+  --brown:#90694D;
+  --line:#D8CFBE; --line-strong:#B9AE98;
+  --on-green:#F0EADE;
+  --shadow:0 1px 2px rgba(36,36,36,.06),0 8px 24px -12px rgba(45,73,61,.25);
+  --radius:14px; --radius-sm:8px;
+  --font-h:"Space Grotesk",system-ui,sans-serif;
+  --font-b:"DM Sans",system-ui,sans-serif;
+  --font-m:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1713; --bg-2:#14201A; --surface:#17241E; --surface-2:#1C2B24;
+    --ink:#EFE8DA; --ink-2:#D3CBBB; --muted:#A9A293;
+    --green:#8FBFA8; --green-2:#A7D0BC; --green-soft:#21352B;
+    --amber:#D9A05B; --amber-ink:#E2B06F; --amber-soft:#3A2C1A;
+    --brown:#C49A78;
+    --line:#2A3B32; --line-strong:#3C5146;
+    --on-green:#0F1713;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1713; --bg-2:#14201A; --surface:#17241E; --surface-2:#1C2B24;
+  --ink:#EFE8DA; --ink-2:#D3CBBB; --muted:#A9A293;
+  --green:#8FBFA8; --green-2:#A7D0BC; --green-soft:#21352B;
+  --amber:#D9A05B; --amber-ink:#E2B06F; --amber-soft:#3A2C1A;
+  --brown:#C49A78;
+  --line:#2A3B32; --line-strong:#3C5146;
+  --on-green:#0F1713;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--font-b);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--green);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--amber-ink)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--font-h);line-height:1.15;margin:0;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--green);color:var(--on-green);padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:16px}
+.mono{font-family:var(--font-m);font-size:.8rem;letter-spacing:.02em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-2);font-weight:500}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--amber)}
+.amp{color:var(--amber)}
+.icon{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Header */
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--font-h);font-weight:700}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--green);color:var(--on-green);display:grid;place-items:center;font-size:.85rem;position:relative}
+.brand-mark::after{content:"";position:absolute;left:9px;right:9px;bottom:6px;height:2px;background:var(--amber)}
+nav.primary ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+nav.primary a{display:block;padding:8px 12px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-size:.92rem;font-weight:500}
+nav.primary a:hover{background:var(--bg-2);color:var(--ink)}
+.top-actions{display:flex;align-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:background-color .2s,border-color .2s,color .2s,transform .2s}
+.btn-primary{background:var(--green);color:var(--on-green)}
+.btn-primary:hover{background:var(--green-2);color:var(--on-green)}
+.btn-ghost{border-color:var(--line-strong);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--green);color:var(--green);background:var(--surface)}
+.icon-btn{width:44px;height:44px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.icon-btn:hover{border-color:var(--green);color:var(--green)}
+.menu-btn{display:none}
+.theme-btn .moon{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .moon{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-btn .sun{display:none}:root:not([data-theme="light"]) .theme-btn .moon{display:block}}
+@media (max-width:900px){
+  nav.primary{position:absolute;left:0;right:0;top:64px;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.primary.open{display:block}
+  nav.primary ul{flex-direction:column;padding:8px 16px 16px}
+  nav.primary a{padding:12px}
+  .menu-btn{display:grid}
+  .top .btn-primary{display:none}
+}
+
+/* Hero */
+.hero{position:relative;padding:72px 0 0;border-bottom:3px solid var(--green)}
+.hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.7rem);margin:18px 0 18px}
+.hero h1 .sub{display:block;font-size:.5em;color:var(--green);font-weight:600;letter-spacing:-.01em;margin-top:12px}
+.lede{font-size:1.12rem;color:var(--ink-2);max-width:60ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.tags{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:22px;color:var(--muted);font-size:.85rem;font-family:var(--font-m)}
+.tags span:not(:last-child)::after{content:"·";margin-left:14px;color:var(--line-strong)}
+.portrait{position:relative;justify-self:center;width:min(360px,100%)}
+.portrait-frame{aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid var(--surface-2);box-shadow:var(--shadow);background:var(--brown)}
+.portrait-frame img{width:100%;height:100%;object-fit:cover}
+.portrait::before{content:"";position:absolute;inset:-18px;border-radius:50%;border:1.5px dashed var(--line-strong);pointer-events:none}
+.status-pill{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow)}
+.dot{width:8px;height:8px;border-radius:50%;background:#3E8E5E;box-shadow:0 0 0 4px color-mix(in srgb,#3E8E5E 25%,transparent)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border-top:1px solid var(--line)}
+.kpi{padding:24px 20px 28px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0;padding-left:0}
+.kpi b{display:block;font-family:var(--font-h);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--green);line-height:1.1;letter-spacing:-.02em}
+.kpi span{display:block;font-size:.88rem;color:var(--ink-2);margin-top:8px}
+.kpi small{display:block;font-family:var(--font-m);font-size:.7rem;color:var(--muted);margin-top:6px}
+@media (max-width:900px){
+  .hero{padding-top:40px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .portrait{order:-1;width:min(230px,70%)}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi{padding:20px 16px}
+  .kpi:nth-child(odd){border-left:0;padding-left:0}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+}
+
+/* Sections */
+section.block{padding:96px 0;scroll-margin-top:64px}
+section.alt{background:var(--bg-2)}
+.sec-head{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:end;margin-bottom:48px}
+.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-top:12px}
+.sec-head p{color:var(--ink-2);font-size:1.05rem}
+@media (max-width:900px){section.block{padding:64px 0}.sec-head{grid-template-columns:1fr;gap:16px;margin-bottom:32px}}
+
+/* Recruiter checklist */
+.check-group{margin-bottom:40px}
+.check-group h3{font-size:1rem;font-family:var(--font-m);font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px}
+.check-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.check{display:grid;grid-template-columns:36px minmax(0,1fr) minmax(0,1.6fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.check-ico{width:32px;height:32px;border-radius:50%;background:var(--green);color:var(--on-green);display:grid;place-items:center}
+.check-ico .icon{width:16px;height:16px;stroke-width:3}
+.check h4{font-size:1.08rem;font-weight:600}
+.check .q{display:block;font-family:var(--font-m);font-size:.72rem;color:var(--muted);margin-bottom:4px;letter-spacing:.04em}
+.check .a{color:var(--ink-2)}
+.check .a strong{color:var(--ink)}
+.proof{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.proof a{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.82rem;font-weight:500;text-decoration:none;color:var(--green)}
+.proof a:hover{border-color:var(--green);color:var(--green)}
+.proof .icon{width:14px;height:14px}
+@media (max-width:720px){.check{grid-template-columns:32px minmax(0,1fr);gap:14px}.check .a{grid-column:2}}
+
+/* Projects */
+.case{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding:56px 0;border-top:1px solid var(--line-strong)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case.flip .case-media{order:2}
+.case-media{position:sticky;top:96px}
+.shot{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface-2);box-shadow:var(--shadow)}
+.shot img{width:100%}
+.shot figcaption{font-size:.8rem;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line);background:var(--surface)}
+.case-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{font-family:var(--font-m);font-size:.7rem;padding:4px 10px;border-radius:999px;background:var(--amber-soft);color:var(--amber-ink);font-weight:500}
+.tag.g{background:var(--green-soft);color:var(--green)}
+.case h3{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:12px}
+.case .pitch{font-size:1.06rem;color:var(--ink-2)}
+.psr{margin:24px 0 0;display:grid;gap:16px}
+.psr div{padding-left:16px;border-left:2px solid var(--line-strong)}
+.psr dt{font-family:var(--font-m);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:4px}
+.psr dd{margin:0;color:var(--ink-2)}
+.psr dd strong{color:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px}
+.metric b{display:block;font-family:var(--font-h);font-size:1.45rem;color:var(--green);line-height:1.1}
+.metric span{display:block;font-size:.78rem;color:var(--ink-2);margin-top:6px;line-height:1.35}
+.stackline{margin-top:20px;font-family:var(--font-m);font-size:.78rem;color:var(--muted);line-height:1.8}
+.stackline b{color:var(--ink-2);font-weight:500}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.links .btn{min-height:40px;padding:8px 16px;font-size:.88rem}
+.note{margin-top:14px;font-size:.8rem;color:var(--muted);font-style:italic}
+@media (max-width:900px){.case{grid-template-columns:1fr;gap:28px;padding:40px 0}.case.flip .case-media{order:0}.case-media{position:static}.metrics{grid-template-columns:1fr 1fr}}
+
+/* Pipeline diagram */
+.flow{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.flow-title{font-family:var(--font-m);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:12px}
+.flow-row{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.node{flex:1 1 110px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.8rem;line-height:1.35}
+.node b{display:block;font-family:var(--font-h);font-size:.88rem;color:var(--ink)}
+.node em{font-style:normal;font-family:var(--font-m);font-size:.68rem;color:var(--muted)}
+.node.ai{border-color:var(--green);background:var(--green-soft)}
+.node.judge{border-color:var(--amber);background:var(--amber-soft)}
+.node.judge b{color:var(--amber-ink)}
+.arrow{align-self:center;color:var(--line-strong);font-family:var(--font-m)}
+@media (max-width:560px){.flow-row{flex-direction:column}.node{flex:none}.arrow{transform:rotate(90deg);align-self:center}}
+
+/* Smaller project grid */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--green)}
+.card h4{font-size:1.2rem}
+.card p{color:var(--ink-2);font-size:.95rem}
+.card .mini{display:flex;flex-wrap:wrap;gap:6px 12px;font-family:var(--font-m);font-size:.74rem;color:var(--green);margin-top:auto;padding-top:6px}
+.card .more{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.9rem;text-decoration:none;margin-top:4px}
+@media (max-width:900px){.grid3{grid-template-columns:1fr}}
+
+/* Prompt principles */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.pr{background:var(--surface);padding:28px 24px}
+.pr .n{font-family:var(--font-m);font-size:.75rem;color:var(--amber-ink);font-weight:500}
+.pr h4{font-size:1.15rem;margin:10px 0 10px}
+.pr p{color:var(--ink-2);font-size:.94rem}
+.pr .ev{display:block;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line-strong);font-size:.82rem;color:var(--muted)}
+.pr .ev b{color:var(--green);font-weight:600}
+@media (max-width:900px){.principles{grid-template-columns:1fr}}
+
+/* Stack */
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stack-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.stack-box h4{font-size:1rem;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.stack-box h4 .icon{color:var(--amber)}
+.stack-box .why{font-size:.86rem;color:var(--muted);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.8rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
+.chip.strong{border-color:var(--green);color:var(--green);font-weight:600}
+@media (max-width:900px){.stack-grid{grid-template-columns:1fr}}
+
+/* How I work */
+.how{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+.quote{font-family:var(--font-h);font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.3;color:var(--green);letter-spacing:-.01em;border-left:4px solid var(--amber);padding-left:24px}
+.quote cite{display:block;margin-top:14px;font-family:var(--font-b);font-size:.9rem;color:var(--muted);font-style:normal;letter-spacing:0}
+.how-list{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.how-list li{display:grid;grid-template-columns:40px 1fr;gap:14px}
+.how-list .ic{width:40px;height:40px;border-radius:10px;background:var(--green-soft);color:var(--green);display:grid;place-items:center}
+.how-list b{display:block;font-family:var(--font-h);font-size:1.02rem;margin-bottom:2px}
+.how-list p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:900px){.how{grid-template-columns:1fr;gap:32px}}
+
+/* Timeline */
+.tl-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line-strong)}
+.timeline li{position:relative;padding:0 0 30px 34px}
+.timeline li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg-2);border:3px solid var(--green)}
+.timeline li.now::before{background:var(--amber);border-color:var(--amber)}
+.timeline .when{font-family:var(--font-m);font-size:.74rem;color:var(--muted)}
+.timeline h4{font-size:1.1rem;margin:4px 0 2px}
+.timeline .org{color:var(--green);font-weight:600;font-size:.92rem}
+.timeline p{color:var(--ink-2);font-size:.93rem;margin-top:6px}
+.side-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:18px}
+.side-box h4{font-size:1rem;margin-bottom:12px}
+.side-box ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:.93rem;display:grid;gap:8px}
+@media (max-width:900px){.tl-grid{grid-template-columns:1fr;gap:24px}}
+
+/* Contact */
+.contact{background:var(--green);color:var(--on-green);border-radius:24px;padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:2px solid color-mix(in srgb,var(--amber) 70%,transparent)}
+.contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
+.contact h2 .amp{color:var(--amber)}
+.contact p{opacity:.88;margin-top:14px;font-size:1.05rem}
+.contact-links{display:grid;gap:10px;position:relative;z-index:1}
+.contact-links a{display:flex;align-items:center;gap:12px;min-height:52px;padding:12px 18px;border-radius:12px;background:color-mix(in srgb,var(--on-green) 10%,transparent);border:1px solid color-mix(in srgb,var(--on-green) 25%,transparent);color:var(--on-green);text-decoration:none;font-weight:600;overflow-wrap:anywhere}
+.contact-links a:hover{background:color-mix(in srgb,var(--on-green) 18%,transparent);color:var(--on-green)}
+.contact-links small{display:block;font-weight:400;opacity:.8;font-size:.8rem}
+@media (max-width:900px){.contact{grid-template-columns:1fr;padding:32px 22px}}
+footer{padding:32px 0 48px;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+/* Reveal (só com JS e sem reduced-motion) */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+</style>
+<script>
+(function(){document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-gh" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h4a2 2 0 0 1 2 2v7"/></symbol>
+  <symbol id="i-wand" viewBox="0 0 24 24"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3M5 6v4M19 14v4M10 2v2M7 8H3M21 16h-4M11 3H9"/></symbol>
+  <symbol id="i-api" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></symbol>
+</svg>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Catarina Gonçalves, início"><span class="brand-mark" aria-hidden="true">CG</span><span>Catarina Gonçalves</span></a>
+    <nav class="primary" id="menu" aria-label="Seções">
+      <ul>
+        <li><a href="#checklist">Para recrutadores</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#prompts">Prompt engineering</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#trajetoria">Trajetória</a></li>
+      </ul>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn theme-btn" type="button" aria-label="Alternar tema claro/escuro"><svg class="icon sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="icon moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+      <button class="icon-btn menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <a class="btn btn-primary" href="#contato">Contato</a>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">AI Builder · GenAI</span>
+        <h1>Produto <span class="amp">&amp;</span> IA, da pesquisa com usuários ao deploy
+          <span class="sub">Agentes, automações e dashboards que resolvem problemas reais — construídos em dias e medidos contra gabarito.</span></h1>
+        <p class="lede">Sou Catarina, estudante de Engenharia de Computação no CEFET-MG e fundadora do <strong>GradMent</strong>, plataforma de planejamento acadêmico em produção. Orquestro LLMs de provedores diferentes (Gemini, GPT-OSS, Nemotron, Claude) com n8n, e uso v0 e Claude Code para colocar uma ideia no ar sem esperar meses.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#checklist">Ver respostas para recrutadores <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+          <a class="btn btn-ghost" href="https://github.com/catarina051" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/catarina-rodrigues-gon%C3%A7alves-b42011297/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-in"/></svg> LinkedIn</a>
+        </div>
+        <div class="tags"><span>Fundadora &amp; PM do GradMent</span><span>Engenharia de Computação · CEFET-MG</span><span>Formatura dez/2028</span></div>
+      </div>
+      <div class="portrait">
+        <div class="portrait-frame"><img src="assets/catarina.webp" width="480" height="480" alt="Foto de Catarina Rodrigues Gonçalves sorrindo, de óculos e blazer preto"></div>
+        <span class="status-pill"><span class="dot" aria-hidden="true"></span> Aberta a estágio em IA</span>
+      </div>
+    </div>
+    <div class="kpis" role="list">
+      <div class="kpi" role="listitem"><b>22 → &lt;2 min</b><span>por certificado de horas complementares com n8n + Gemini</span><small>medido pela autora · piloto em uso</small></div>
+      <div class="kpi" role="listitem"><b>92,5%</b><span>de acerto da IA juíza nas divergências entre dois LLMs</span><small>vs 66,2% no mesmo modelo</small></div>
+      <div class="kpi" role="listitem"><b>99/99</b><span>disciplinas extraídas de um PPC real de 190 páginas</span><small>7 min 12 s por PPC · custo zero</small></div>
+      <div class="kpi" role="listitem"><b>72</b><span>alunos cadastrados no GradMent, produto em produção</span><small>40 históricos importados · nov/2026</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="block" id="checklist">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Para quem está recrutando</span><h2>O que a vaga pede, e onde está a prova</h2></div>
+      <p>Cada item da vaga de AI Builder abaixo aponta para um projeto público, com código aberto, demo no ar ou número medido. Sem slide de intenção: só o que já existe.</p>
+    </div>
+
+    <div class="check-group reveal">
+      <h3>O que se espera ver no portfólio</h3>
+      <ul class="check-list">
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">01</span><h4>Automações que economizaram horas reais</h4></div>
+          <div class="a"><strong>Horas complementares:</strong> preparar um certificado para o SIGAA levava <strong>21 min 49 s</strong> à mão; com o pipeline n8n + Gemini cai para <strong>menos de 2 min</strong>. <strong>PPC → GradMent:</strong> abrir uma nova universidade deixou de exigir digitar ~100 disciplinas e 100+ pré-requisitos — a máquina entrega a matriz validada em 7 min.
+            <div class="proof"><a href="#p-horas">Ver caso <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="#p-ppc">Ver caso PPC <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">02</span><h4>Ferramentas internas deployadas</h4></div>
+          <div class="a">Pipeline de horas complementares rodando em <strong>Docker numa VM AWS</strong>, em piloto com os primeiros estudantes, sem login e sem guardar dado pessoal. Conversor de PPC empacotado com um script de implantação para o time do GradMent. A mesma rotina também virou <strong>skill própria do Claude Code</strong>.
+            <div class="proof"><a href="https://github.com/catarina051/horas-complementares-ia" target="_blank" rel="noopener">horas-complementares-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://github.com/catarina051/ppc-gradment-ia" target="_blank" rel="noopener">ppc-gradment-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">03</span><h4>Dashboards funcionais</h4></div>
+          <div class="a">Dois dashboards <strong>no ar na Vercel</strong>, lendo dados reais dos pipelines e revalidando sozinhos; e uma plataforma de dados com <strong>6 dashboards por papel no Metabase</strong> (Airflow + dbt + PostgreSQL).
+            <div class="proof"><a href="https://gradment.vercel.app" target="_blank" rel="noopener">gradment.vercel.app <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://termometro-psi.vercel.app" target="_blank" rel="noopener">termometro-psi.vercel.app <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="#p-data">Plataforma de dados <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">04</span><h4>Agentes que resolvem problemas de negócio</h4></div>
+          <div class="a">Três agentes — <strong>extratora, auditora e juíza</strong>, cada um num provedor diferente — destravam a expansão do GradMent para outras universidades. Comparado a um único LLM de ponta (US$ 3,08/PPC), o pipeline acerta <strong>98,0% vs 57,1%</strong> na classificação obrigatória/optativa e entrega um JSON que o produto aceita, <strong>a custo zero</strong>.
+            <div class="proof"><a href="#p-ppc">Ver arquitetura <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">05</span><h4>Demos de produtos construídos do zero em dias</h4></div>
+          <div class="a">O pipeline de PPC e seu dashboard foram construídos num único dia (<strong>43 + 3 commits em 05/11/2026</strong>), com Claude Code e v0. O Termômetro do Semestre virou um site navegável com uma rota de IA. Há GIF da execução real e vídeos de demo.
+            <div class="proof"><a href="#p-ppc">GIF da execução <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="https://www.youtube.com/watch?v=z5_0VSG5xW4" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Demo GradMent</a><a href="https://lnkd.in/p/dp4rEizz" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Vídeo horas complementares</a></div></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="check-group reveal">
+      <h3>Competências da vaga</h3>
+      <ul class="check-list">
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">06</span><h4>Prompt engineering avançado</h4></div>
+          <div class="a">JSON Schema estrito, duas leituras em sentidos opostos, documento tratado como dado (defesa contra <em>prompt injection</em>), juíza com escopo restrito que cita a página, exemplos de ambiguidade no prompt e <strong>LLM proibido de calcular</strong> — a conta fica no código.
+            <div class="proof"><a href="#prompts">6 princípios com evidência <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">07</span><h4>Orquestração de agentes (Claude, GPT, Gemini)</h4></div>
+          <div class="a">Cada papel do pipeline troca de provedor sem mudar código: <strong>Gemini, OpenAI (GPT), Anthropic (Claude), Groq, OpenRouter e Mistral</strong>, com <em>fallback</em> automático. Medido em produção: Gemini + Nemotron + GPT-OSS 120B; Claude Opus como linha de base comparativa. No dia a dia, desenvolvo com Claude Code e skills próprias.
+            <div class="proof"><a href="#p-ppc">Pipeline multi-LLM <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="#p-skillcord">Skillcord <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">08</span><h4>Automações com n8n, Make, Zapier</h4></div>
+          <div class="a"><strong>n8n self-hosted</strong> em dois sistemas reais: 42 nós (PPC) e 35 nós (horas complementares), com formulário web, webhooks, OCR, chamadas de LLM, Gotenberg para PDF e testes automatizados em volta.
+            <div class="proof"><a href="#p-ppc">42 nós <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="#p-horas">35 nós <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">09</span><h4>Ferramentas de vibe coding (Cursor, v0, Bolt, Replit)</h4></div>
+          <div class="a"><strong>v0</strong> para as telas e <strong>Claude Code</strong> para rotas, tipagem e testes — com os prompts exatos publicados e um registro do que foi decisão minha e do que foi da IA. <code>ignoreBuildErrors</code> desligado: o código gerado precisa compilar.
+            <div class="proof"><a href="https://github.com/catarina051/ppc-gradment-dashboard" target="_blank" rel="noopener">ppc-gradment-dashboard <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://github.com/catarina051/termometro-semestre-app" target="_blank" rel="noopener">termometro-semestre-app <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">10</span><h4>APIs sem backend profundo</h4></div>
+          <div class="a">Webhook <code>POST /webhook/converter-ppc</code> exposto pelo n8n; rota serverless <code>/api/explicar</code> no Next.js/Vercel que chama o Gemini e descarta respostas inventadas (12 testes); integração com a <strong>API da Meta</strong> para trazer métricas de leads na Zé do Lead.
+            <div class="proof"><a href="#p-termometro">Rota /api/explicar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="#trajetoria">Zé do Lead <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+        <li class="check">
+          <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+          <div><span class="q">11</span><h4>Análise de dados com IA</h4></div>
+          <div class="a"><strong>82.690 matrículas</strong> da UFRN em DuckDB, com validação por divisão de alunos (100 repetições) e IC 95%. O LLM só <em>explica</em> números já calculados. Resultado cruzado com dados reais do GradMent: <strong>Spearman ρ = 0,83</strong> (p = 0,0015).
+            <div class="proof"><a href="#p-termometro">Termômetro do Semestre <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section class="block alt" id="projetos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Projetos</span><h2>Problema real, solução no ar, número medido</h2></div>
+      <p>Cada caso segue o mesmo formato: qual dor existia, o que construí e o que mudou. Os números vêm dos READMEs públicos e, quando a amostra é pequena, isso está dito.</p>
+    </div>
+
+    <!-- PPC -->
+    <article class="case reveal" id="p-ppc">
+      <div class="case-media">
+        <figure class="shot"><img src="assets/ppc-demo.gif" loading="lazy" width="880" height="608" alt="GIF do formulário n8n: envio de um PPC, divergência entre Gemini e Nemotron arbitrada pela juíza GPT-OSS e matriz consolidada"><figcaption>Execução real (07/11/2026): Gemini e Nemotron divergem em 1 pré-requisito; a juíza GPT-OSS decide citando a página do PPC.</figcaption></figure>
+        <div class="flow" aria-label="Arquitetura do pipeline PPC para GradMent">
+          <div class="flow-title">Arquitetura · 42 nós no n8n</div>
+          <div class="flow-row">
+            <div class="node"><b>PPC</b><em>PDF · DOCX · TXT + OCR</em></div><span class="arrow" aria-hidden="true">→</span>
+            <div class="node ai"><b>Extratora</b><em>Gemini · matriz → ementário</em></div>
+            <div class="node ai"><b>Auditora</b><em>Nemotron · ementário → matriz</em></div><span class="arrow" aria-hidden="true">→</span>
+            <div class="node"><b>Comparação</b><em>em código, não em LLM</em></div>
+          </div>
+          <div class="flow-row" style="margin-top:8px">
+            <div class="node judge"><b>Juíza</b><em>GPT-OSS 120B · só divergências, cita a página</em></div><span class="arrow" aria-hidden="true">→</span>
+            <div class="node"><b>Validador</b><em>7 regras + DFS anti-ciclo</em></div><span class="arrow" aria-hidden="true">→</span>
+            <div class="node ai"><b>JSON → GradMent</b><em>importado sem retrabalho</em></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="case-tags"><span class="tag g">Agentes multi-LLM</span><span class="tag">n8n</span><span class="tag">Prompt engineering</span><span class="tag">Problema de negócio</span></div>
+        <h3>PPC → GradMent: três IAs que discordam de propósito</h3>
+        <p class="pitch">Um conversor que transforma o projeto pedagógico de qualquer universidade na matriz curricular que o GradMent importa.</p>
+        <dl class="psr">
+          <div><dt>Problema</dt><dd>O GradMent só aceitava o layout do CEFET-MG. Cada nova universidade exigia digitar à mão <strong>~100 disciplinas e 100+ pré-requisitos</strong> — um gargalo direto de crescimento.</dd></div>
+          <div><dt>Solução</dt><dd>Duas IAs leem o PPC em <strong>sentidos opostos</strong>; o código compara; só as divergências vão para uma <strong>juíza em outro provedor</strong>, que precisa citar a página. Um validador determinístico barra ciclos e erros de tipo antes de qualquer JSON sair.</dd></div>
+          <div><dt>Aprendizado</dt><dd>Duas IAs concordando não quer dizer que estão certas: quando o <em>fallback</em> colocou as duas no mesmo modelo, elas erraram igual. Diversidade de provedor virou regra.</dd></div>
+        </dl>
+        <div class="metrics">
+          <div class="metric"><b>100%</b><span>disciplinas (99/99) e carga horária no PPC real</span></div>
+          <div class="metric"><b>92,5%</b><span>acerto da juíza em modelo diferente (66,2% no mesmo)</span></div>
+          <div class="metric"><b>98% vs 57%</b><span>obrigatória × optativa vs um único LLM de ponta</span></div>
+          <div class="metric"><b>96,1%</b><span>precisão em pré/correquisitos (revocação 82,0%)</span></div>
+          <div class="metric"><b>98,6%</b><span>disciplinas em outra universidade (UNIFEI)</span></div>
+          <div class="metric"><b>US$ 0</b><span>por PPC, só cotas gratuitas (vs US$ 3,08)</span></div>
+        </div>
+        <p class="stackline"><b>Stack:</b> n8n · Gemini · Nemotron (OpenRouter) · GPT-OSS 120B (Groq) · PyMuPDF + OCR · Gotenberg · JSON Schema · Docker · Claude Code</p>
+        <div class="links">
+          <a class="btn btn-primary" href="https://github.com/catarina051/ppc-gradment-ia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> Código</a>
+          <a class="btn btn-ghost" href="https://gradment.vercel.app" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg> Dashboard de resultados</a>
+        </div>
+        <p class="note">9 execuções reais em 05/11/2026, medidas contra gabarito. 43 commits num único dia.</p>
+      </div>
+    </article>
+
+    <!-- HORAS -->
+    <article class="case flip reveal" id="p-horas">
+      <div class="case-media">
+        <figure class="shot"><img src="assets/horas-resultado.webp" loading="lazy" width="1000" height="1100" alt="Página de resultado com código ECL2023, opção do SIGAA, descrição e cálculo de 24 horas-aula para um certificado fictício"><figcaption>Resultado para um certificado fictício: categoria, opção do SIGAA e cálculo rastreável.</figcaption></figure>
+      </div>
+      <div>
+        <div class="case-tags"><span class="tag g">Automação que economiza horas</span><span class="tag">Ferramenta deployada</span><span class="tag">n8n + Gemini</span></div>
+        <h3>Horas complementares: do certificado ao PDF pronto para o SIGAA</h3>
+        <p class="pitch">O aluno envia o certificado; recebe o documento classificado, calculado e pronto para submeter.</p>
+        <dl class="psr">
+          <div><dt>Problema</dt><dd>Classificar a categoria, calcular a carga horária, preencher e assinar: <strong>21 min 49 s</strong> por certificado, repetidos por todos os alunos, todo semestre — com espaço para erro.</dd></div>
+          <div><dt>Solução</dt><dd>OCR com Tesseract, <strong>anonimização antes da IA</strong>, Gemini classificando contra um JSON Schema de 31 categorias, cálculo de horas em código e PDF com declaração de autenticidade via Gotenberg.</dd></div>
+          <div><dt>Decisão de produto</dt><dd>Cortei o escopo: <strong>sem login, sem guardar dados, sem integração com o GradMent</strong> na primeira versão. Validar o valor antes de investir em escala.</dd></div>
+        </dl>
+        <div class="metrics">
+          <div class="metric"><b>&lt;2 min</b><span>por certificado (antes 21 min 49 s)</span></div>
+          <div class="metric"><b>83</b><span>testes automatizados (45 JS + 38 Python)</span></div>
+          <div class="metric"><b>5/5</b><span>categorias corretas na amostra inicial</span></div>
+        </div>
+        <p class="stackline"><b>Stack:</b> n8n (35 nós) · Gemini · Tesseract OCR · Python · Gotenberg · Docker · AWS (piloto) · skill do Claude Code</p>
+        <div class="links">
+          <a class="btn btn-primary" href="https://github.com/catarina051/horas-complementares-ia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> Código</a>
+          <a class="btn btn-ghost" href="https://lnkd.in/p/dp4rEizz" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Vídeo do processo</a>
+        </div>
+        <p class="note">Amostra pequena, medida pela autora. A projeção de ~99 h economizadas por semestre é uma estimativa teórica: a adesão ainda não foi medida.</p>
+      </div>
+    </article>
+
+    <!-- TERMOMETRO -->
+    <article class="case reveal" id="p-termometro">
+      <div class="case-media">
+        <figure class="shot"><img src="assets/termometro.webp" loading="lazy" width="1200" height="826" alt="Gráfico de reprovação e desistência por disciplina do ciclo básico da UFRN"><figcaption>Reprovação e desistência por disciplina, UFRN 2015–2019.</figcaption></figure>
+      </div>
+      <div>
+        <div class="case-tags"><span class="tag g">Análise de dados com IA</span><span class="tag">v0</span><span class="tag">API serverless</span></div>
+        <h3>Termômetro do Semestre: um LLM que só explica, nunca calcula</h3>
+        <p class="pitch">Onde o ciclo básico de engenharia reprova, e o que é sinal de verdade e o que é só repetência.</p>
+        <dl class="psr">
+          <div><dt>Problema</dt><dd>Correlações em dados educacionais enganam fácil. Um LLM solto inventa números com confiança.</dd></div>
+          <div><dt>Solução</dt><dd>Análise em Python + DuckDB com validação por divisão de alunos (100 repetições). Tela feita no <strong>v0</strong>; a rota <code>/api/explicar</code> pede ao Gemini uma explicação e <strong>descarta qualquer resposta com número que não está nos dados</strong>.</dd></div>
+          <div><dt>Achado</dt><dd>9 de 12 "pares de risco" eram só repetência. Cálculo I reprova <strong>65,5%</strong> por tentativa (IC 95% 64,4–66,6).</dd></div>
+        </dl>
+        <div class="metrics">
+          <div class="metric"><b>82.690</b><span>matrículas analisadas (dados abertos)</span></div>
+          <div class="metric"><b>ρ = 0,83</b><span>correlação com dados reais do GradMent</span></div>
+          <div class="metric"><b>12</b><span>testes na rota de IA</span></div>
+        </div>
+        <p class="stackline"><b>Stack:</b> Python · DuckDB · Gemini · Next.js 16 · React 19 · TypeScript · Tailwind 4 · shadcn/ui · Recharts · Vercel</p>
+        <div class="links">
+          <a class="btn btn-primary" href="https://termometro-psi.vercel.app" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg> Abrir o site</a>
+          <a class="btn btn-ghost" href="https://github.com/catarina051/termometro-semestre" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> Análise</a>
+          <a class="btn btn-ghost" href="https://github.com/catarina051/termometro-semestre-app" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> App</a>
+        </div>
+        <p class="note">Não classifica alunos nem estima evasão — escolha deliberada.</p>
+      </div>
+    </article>
+
+    <!-- DASHBOARD -->
+    <article class="case flip reveal" id="p-dash">
+      <div class="case-media">
+        <figure class="shot"><img src="assets/ppc-dashboard.webp" loading="lazy" width="1200" height="1078" alt="Dashboard com indicadores do PPC real e acerto por campo"><figcaption>gradment.vercel.app: indicadores do PPC real e acerto por campo.</figcaption></figure>
+      </div>
+      <div>
+        <div class="case-tags"><span class="tag g">Dashboard funcional</span><span class="tag">Vibe coding</span><span class="tag">Feito em 1 dia</span></div>
+        <h3>Dashboard do pipeline: v0 + Claude Code, com o registro de quem decidiu o quê</h3>
+        <p class="pitch">Mostra a qualidade de cada execução do conversor de PPC, lendo o JSON de resultados direto do repositório e revalidando a cada 5 minutos.</p>
+        <dl class="psr">
+          <div><dt>Como foi feito</dt><dd>Telas no <strong>v0</strong>, ajustes e integração no <strong>Claude Code</strong>. O README publica <strong>os prompts exatos</strong> e separa o que foi decisão minha e o que foi da IA — transparência sobre o próprio processo de vibe coding.</dd></div>
+        </dl>
+        <figure class="shot" style="margin-top:22px"><img src="assets/ppc-juiza.webp" loading="lazy" width="1200" height="843" alt="Gráfico: a juíza acerta 92,5% em modelo diferente e 66,2% no mesmo modelo"><figcaption>Acerto da juíza: modelo diferente vs mesmo modelo.</figcaption></figure>
+        <p class="stackline"><b>Stack:</b> Next.js 16 · React 19 · TypeScript · Tailwind 4 · shadcn/ui · Recharts · Vercel</p>
+        <div class="links">
+          <a class="btn btn-primary" href="https://gradment.vercel.app" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg> Abrir dashboard</a>
+          <a class="btn btn-ghost" href="https://github.com/catarina051/ppc-gradment-dashboard" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> Código e prompts</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="grid3">
+      <article class="card reveal" id="p-gradment">
+        <span class="tag g" style="align-self:flex-start">Produto em produção</span>
+        <h4>GradMent</h4>
+        <p>Planejador de grade que avisa quando uma reprovação vai atrasar a formatura. Importa o histórico do SIGAA em PDF. Sou fundadora e PM: pesquisa com veteranos, roadmap, precificação do Plus e front em React/TS.</p>
+        <div class="mini"><span>72 cadastrados</span><span>1.739 linhas de histórico</span><span>6/7 na lista de espera do Plus</span></div>
+        <a class="more" href="https://gradment.com.br" target="_blank" rel="noopener">gradment.com.br <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
+        <a class="more" href="https://youtu.be/dxQApeMtuUo" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Pitch Sebrae Supernova</a>
+      </article>
+      <article class="card reveal" id="p-data">
+        <span class="tag g" style="align-self:flex-start">Dados &amp; dashboards</span>
+        <h4>GradMent Data Platform</h4>
+        <p>Do evento ao dashboard: tracking → Airflow/dbt → PostgreSQL em star schema → Metabase. Pipeline real privado com anonimização (SHA-256 com sal) e uma cópia pública com dados sintéticos.</p>
+        <div class="mini"><span>39 eventos</span><span>9 modelos de métricas</span><span>6 dashboards por papel</span></div>
+        <a class="more" href="https://github.com/catarina051/gradment-data-platform" target="_blank" rel="noopener">Ver código <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
+      </article>
+      <article class="card reveal" id="p-skillcord">
+        <span class="tag" style="align-self:flex-start">Ferramentas para agentes</span>
+        <h4>Skillcord</h4>
+        <p>Runtime local-first para tornar reproduzíveis as skills de agentes de código (Claude Code, Codex, AGENTS.md): descoberta, detecção determinística de sobreposição, lock com hashes. Protótipo pausado.</p>
+        <div class="mini"><span>273 testes</span><span>92% de cobertura</span><span>ruff + mypy limpos</span></div>
+        <a class="more" href="https://github.com/catarina051/skillcord" target="_blank" rel="noopener">Ver código <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROMPTS -->
+<section class="block" id="prompts">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Prompt engineering</span><h2>Seis regras que uso para o LLM não me enganar</h2></div>
+      <p>Prompt bom não é texto bonito: é contrato de entrada e saída, escopo restrito e verificação fora do modelo. Cada regra abaixo está em produção em algum dos projetos.</p>
+    </div>
+    <div class="principles reveal">
+      <div class="pr"><span class="n">01</span><h4>O LLM não calcula</h4><p>A IA classifica e explica; contas, horas e estatística ficam em código determinístico e testado.</p><span class="ev"><b>Onde:</b> horas complementares, Termômetro (descarta respostas com números fora dos dados)</span></div>
+      <div class="pr"><span class="n">02</span><h4>Saída com contrato</h4><p>JSON Schema estrito em toda chamada. Se não valida, não segue no fluxo.</p><span class="ev"><b>Onde:</b> 31 categorias de horas, matriz curricular do GradMent</span></div>
+      <div class="pr"><span class="n">03</span><h4>Documento é dado, não instrução</h4><p>Certificados e PPCs entram delimitados como conteúdo; o prompt deixa explícito que nada dentro deles é ordem para o modelo.</p><span class="ev"><b>Onde:</b> defesa contra <em>prompt injection</em> nos dois pipelines n8n</span></div>
+      <div class="pr"><span class="n">04</span><h4>Discordância de propósito</h4><p>Duas leituras em sentidos opostos e uma juíza em outro provedor, com escopo restrito e obrigação de citar a página.</p><span class="ev"><b>Medido:</b> 92,5% de acerto vs 66,2% com o mesmo modelo</span></div>
+      <div class="pr"><span class="n">05</span><h4>Contexto e casos difíceis</h4><p>O prompt v2 traz o contexto do curso, exemplos de ambiguidade e a lista de opções que de fato existem no sistema de destino.</p><span class="ev"><b>Onde:</b> classificação contra os tipos disponíveis no SIGAA</span></div>
+      <div class="pr"><span class="n">06</span><h4>Medir contra gabarito</h4><p>Precisão e revocação por campo, em documentos reais e sintéticos, e comparação honesta com um único LLM de ponta.</p><span class="ev"><b>Medido:</b> 9 execuções, 3 universidades/PPCs, custo por PPC</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="block alt" id="stack">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Stack</span><h2>Ferramentas que já usei para entregar</h2></div>
+      <p>Em destaque, o que está em projeto público. Escolho a ferramenta mais simples que resolve — e troco de provedor sem reescrever o fluxo.</p>
+    </div>
+    <div class="stack-grid reveal">
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-bot"/></svg> LLMs e agentes</h4><p class="why">Orquestração multi-provedor com fallback</p><div class="chips"><span class="chip strong">Gemini</span><span class="chip strong">GPT-OSS 120B · Groq</span><span class="chip strong">Nemotron · OpenRouter</span><span class="chip strong">Claude Opus</span><span class="chip">OpenAI</span><span class="chip">Mistral</span><span class="chip">JSON Schema</span></div></div>
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-flow"/></svg> Automação</h4><p class="why">Fluxos de ponta a ponta com testes em volta</p><div class="chips"><span class="chip strong">n8n</span><span class="chip strong">Webhooks</span><span class="chip">Tesseract / PyMuPDF OCR</span><span class="chip">Gotenberg</span><span class="chip">Docker</span><span class="chip">AWS</span></div></div>
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-wand"/></svg> Vibe coding</h4><p class="why">Da ideia à tela no ar em horas</p><div class="chips"><span class="chip strong">Claude Code</span><span class="chip strong">v0</span><span class="chip">Skills próprias</span><span class="chip">Vercel</span></div></div>
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-api"/></svg> Front e APIs</h4><p class="why">Rotas serverless e integrações</p><div class="chips"><span class="chip strong">Next.js</span><span class="chip strong">React</span><span class="chip">TypeScript</span><span class="chip">Tailwind · shadcn/ui</span><span class="chip">API REST</span><span class="chip">API da Meta</span><span class="chip">Flutter</span></div></div>
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg> Dados</h4><p class="why">Do evento ao dashboard</p><div class="chips"><span class="chip strong">Python</span><span class="chip strong">DuckDB</span><span class="chip">Airflow</span><span class="chip">dbt</span><span class="chip">PostgreSQL</span><span class="chip">Metabase</span><span class="chip">Recharts</span></div></div>
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg> Produto</h4><p class="why">Entender o problema antes do código</p><div class="chips"><span class="chip strong">Pesquisa com usuários</span><span class="chip">Figma</span><span class="chip">BPMN</span><span class="chip">WCAG / eMAG</span><span class="chip">Scrum</span><span class="chip">Roadmap &amp; pricing</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRABALHO -->
+<section class="block" id="como">
+  <div class="wrap how reveal">
+    <div>
+      <span class="eyebrow">Como trabalho</span>
+      <blockquote class="quote" style="margin:20px 0 0">Às vezes, a decisão mais importante de um projeto não é o que vamos desenvolver, mas o que decidimos deixar para depois.<cite>— sobre cortar o escopo das horas complementares para validar antes de escalar</cite></blockquote>
+    </div>
+    <ul class="how-list">
+      <li><span class="ic" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span><div><b>Problema real primeiro</b><p>Entrevisto quem vive a dor antes de abrir o editor: veteranos no GradMent, profissionais de saúde no FilaZero.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="icon"><use href="#i-scissors"/></svg></span><div><b>Entrego o essencial</b><p>Primeira versão sem login, sem integração e sem banco — o suficiente para alguém usar e eu aprender.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="icon"><use href="#i-target"/></svg></span><div><b>IA com prova</b><p>Gabarito, testes automatizados e limites declarados. Quando o número é estimativa, escrevo que é estimativa.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TRAJETORIA -->
+<section class="block alt" id="trajetoria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Trajetória</span><h2>Produto, pesquisa e código</h2></div>
+      <p>De dar aula de informática para quem nunca ligou um computador a fundar um produto em produção: aprendi a traduzir tecnologia para pessoas reais.</p>
+    </div>
+    <div class="tl-grid">
+      <ol class="timeline reveal">
+        <li class="now"><span class="when">mar/2026 — hoje</span><h4>Fundadora &amp; Product Manager</h4><span class="org">GradMent</span><p>Pesquisa e validação com veteranos, roadmap, precificação do Plus, equipe em Scrum, registro no INPI e documentação LGPD. Claude e Claude Code no processo, com validação humana.</p></li>
+        <li class="now"><span class="when">jan/2026 — hoje</span><h4>Bolsista FAPEMIG · Produto e Mobile</h4><span class="org">CEFET-MG · FilaZero (SUS)</span><p>Entrevistas com profissionais de saúde, fluxo em BPMN, protótipos no Figma guiados por WCAG 2.1 e eMAG, arquitetura em 4 módulos e telas em Flutter.</p></li>
+        <li><span class="when">mai — ago/2025</span><h4>Instrutora de informática</h4><span class="org">CEFET-MG · Programa Mulheres Mil</span><p>Curso de 260 h para mulheres em vulnerabilidade social, turmas de 16 a mais de 50 anos.</p></li>
+        <li><span class="when">jun — nov/2024</span><h4>Desenvolvedora web</h4><span class="org">Zé do Lead</span><p>Integração com a API da Meta para trazer métricas de leads à plataforma; React.js e PHP em time ágil.</p></li>
+      </ol>
+      <div class="reveal">
+        <div class="side-box"><h4>Formação</h4><ul><li>Engenharia de Computação — CEFET-MG, Leopoldina · formatura prevista dez/2028</li></ul></div>
+        <div class="side-box"><h4>Reconhecimentos</h4><ul><li>Primeira autora de artigos na MOCITEC MG 2026</li><li>GradMent no Sebrae Supernova 2026</li><li>4º lugar no Hackathon Pif Paf</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="block" id="contato">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div>
+        <h2>Vamos construir algo <span class="amp">&amp;</span> medir se funciona?</h2>
+        <p>Busco estágio em IA e produto. Gosto de problemas com dono, dados de verdade e prazo curto.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:catarina.goncalves051@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span>catarina.goncalves051@gmail.com<small>E-mail</small></span></a>
+        <a href="https://www.linkedin.com/in/catarina-rodrigues-gon%C3%A7alves-b42011297/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-in"/></svg><span>Catarina Rodrigues Gonçalves<small>LinkedIn</small></span></a>
+        <a href="https://github.com/catarina051" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg><span>github.com/catarina051<small>GitHub</small></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Catarina Rodrigues Gonçalves · Leopoldina, MG</span><span>Números retirados dos READMEs públicos de cada projeto.</span></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var themeBtn=document.querySelector('.theme-btn');
+  themeBtn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur){cur=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+  var menuBtn=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+  menuBtn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open);
+  });
+  menu.addEventListener('click',function(e){if(e.target.closest('a')){menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(el){el.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>
