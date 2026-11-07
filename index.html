@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catarina Gonçalves · IA Aplicada, Engenharia e Produto</title>
-<meta name="description" content="Portfólio de Catarina Rodrigues Gonçalves: agentes multi-LLM, automações com n8n, dashboards e produtos de IA construídos do zero e medidos contra gabarito.">
+<meta name="description" content="Portfólio de Catarina Rodrigues Gonçalves: pipelines multi-LLM, automações com n8n, dashboards e produtos de IA construídos do zero e medidos contra gabarito.">
 <link rel="canonical" href="https://catarina051.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://catarina051.github.io/">
 <meta property="og:title" content="Catarina Gonçalves · IA Aplicada, Engenharia e Produto">
-<meta property="og:description" content="Fundadora do GradMent, em produção com 72 alunos. Agentes multi-LLM, automações n8n e dashboards — com números medidos.">
+<meta property="og:description" content="Fundadora do GradMent, em produção: 72 alunos cadastrados e 40 históricos importados. Pipelines multi-LLM, automações n8n e dashboards — com números medidos.">
 <meta property="og:image" content="https://catarina051.github.io/assets/og-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -167,6 +167,11 @@ section.alt{background:var(--bg-2)}
 .check .q{display:block;font-family:var(--font-m);font-size:.72rem;color:var(--muted);margin-bottom:4px;letter-spacing:.04em}
 .check .a{color:var(--ink-2)}
 .check .a strong{color:var(--ink)}
+.stages{list-style:none;margin:10px 0;padding:0;display:grid;gap:10px}
+.stages li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:start}
+.stage{font-family:var(--font-m);font-size:.68rem;padding:4px 10px;border-radius:999px;background:var(--amber-soft);color:var(--amber-ink);font-weight:500;justify-self:start}
+.stage.prod{background:var(--green-soft);color:var(--green)}
+@media (max-width:720px){.stages li{grid-template-columns:1fr;gap:4px}}
 .proof{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .proof a{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.82rem;font-weight:500;text-decoration:none;color:var(--green)}
 .proof a:hover{border-color:var(--green);color:var(--green)}
@@ -424,7 +429,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div>
         <span class="eyebrow">IA Aplicada · Engenharia · Produto</span>
         <h1>Produto <span class="amp">&amp;</span> IA, da pesquisa com usuários ao deploy
-          <span class="sub">Fundei o GradMent, usado por 72 alunos, e construo com IA os agentes e as automações que o fazem crescer.</span></h1>
+          <span class="sub">Fundei o GradMent, em produção com 72 alunos cadastrados, e construo com IA os pipelines e as automações que o ajudam a crescer.</span></h1>
         <p class="lede">Sou Catarina, estudante de Engenharia de Computação no CEFET-MG. No <strong>GradMent</strong> fui da pesquisa com 77 estudantes ao produto em produção, ao teste de modelo de negócio e ao Sebrae Supernova. Para levá-lo a outras universidades, orquestrei LLMs de provedores diferentes com n8n — e uso v0 e Claude Code para colocar ideias no ar em dias.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#gradment">Conhecer o GradMent <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
@@ -440,10 +445,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
     </div>
     <div class="kpis" role="list">
-      <div class="kpi" role="listitem"><b>72</b><span>alunos cadastrados no GradMent, produto em produção</span><small>40 históricos importados · nov/2026</small></div>
+      <div class="kpi" role="listitem"><b>72 · 40</b><span>alunos cadastrados no GradMent · destes, 40 importaram o histórico do SIGAA</span><small>produto em produção · banco de produção, nov/2026</small></div>
       <div class="kpi" role="listitem"><b>3,0 → 4,6</b><span>confiança do aluno na grade montada, sem e com o GradMent</span><small>teste com 7 usuários do beta</small></div>
       <div class="kpi" role="listitem"><b>99/99</b><span>disciplinas extraídas por IA de um PPC real, para abrir novas universidades</span><small>3 LLMs · 7 min por PPC · custo zero</small></div>
-      <div class="kpi" role="listitem"><b>22 → &lt;2 min</b><span>por certificado de horas complementares com n8n + Gemini</span><small>medido pela autora · piloto em uso</small></div>
+      <div class="kpi" role="listitem"><b>22 → &lt;2 min</b><span>por certificado de horas complementares com n8n + Gemini</span><small>medido pela autora · implantado na AWS, em piloto</small></div>
     </div>
   </div>
 </section>
@@ -512,11 +517,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
     <!-- Tração -->
     <div class="traction reveal">
-      <div class="tr-head"><span class="eyebrow light">Tração · banco de produção, 07/11/2026</span><p>Números de um produto pequeno e novo, não de escala — sem contas de teste.</p></div>
+      <div class="tr-head"><span class="eyebrow light">Tração · banco de produção, 07/11/2026</span><p>Números de um produto pequeno e novo, não de escala — sem contas de teste. Cadastro não é usuário ativo: não há métrica de uso recorrente, e por isso ele não é afirmado aqui.</p></div>
       <div class="tr-grid">
         <div><b>72</b><span>alunos cadastrados</span></div>
-        <div><b>40</b><span>enviaram o histórico</span></div>
-        <div><b>1.739</b><span>linhas de histórico importadas</span></div>
+        <div><b>40</b><span>importaram o histórico do SIGAA (56% dos cadastrados)</span></div>
+        <div><b>1.739</b><span>linhas de histórico importadas desses 40 alunos</span></div>
         <div><b>121</b><span>avaliações de disciplinas</span></div>
         <div><b>315</b><span>disciplinas no catálogo</span></div>
         <div><b>18</b><span>cadastros numa única recepção de calouros</span></div>
@@ -528,7 +533,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div>
         <span class="eyebrow">Escala com IA</span>
         <h3>Como o GradMent sai de Leopoldina</h3>
-        <p>Cadastrar um curso novo era trabalho manual. Construí o pipeline de agentes <a href="#p-ppc">PPC → GradMent</a>: três LLMs convertem o projeto pedagógico de qualquer universidade na matriz que o produto importa. A segunda universidade (UNIFEI) saiu com 98,6% das disciplinas corretas.</p>
+        <p>Cadastrar um curso novo era trabalho manual. Construí o pipeline multi-LLM <a href="#p-ppc">PPC → GradMent</a>, coordenado pelo n8n: três LLMs, com papéis distintos, convertem o projeto pedagógico de qualquer universidade na matriz que o produto importa. A segunda universidade (UNIFEI) saiu com 98,6% das disciplinas corretas.</p>
       </div>
       <ol class="road">
         <li><b>CEFET-MG Leopoldina</b><span>~540 alunos de engenharia · onde começamos</span></li>
@@ -563,13 +568,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
           <div><span class="q">01</span><h4>Automações com economia de tempo mensurável</h4></div>
-          <div class="a"><strong>Horas complementares:</strong> preparar um certificado para o SIGAA levava <strong>21 min 49 s</strong> à mão; com o pipeline n8n + Gemini cai para <strong>menos de 2 min</strong>. <strong>PPC → GradMent:</strong> abrir uma nova universidade deixou de exigir digitar ~100 disciplinas e 100+ pré-requisitos — a máquina entrega a matriz validada em 7 min.
+          <div class="a"><strong>Horas complementares:</strong> preparar um certificado para o SIGAA levava <strong>21 min 49 s</strong> à mão; com o pipeline n8n + Gemini cai para <strong>menos de 2 min</strong>. <strong>PPC → GradMent:</strong> o pipeline entrega a matriz validada de um PPC real (~100 disciplinas e 100+ pré-requisitos) em 7 min, em vez de digitação manual.
             <div class="proof"><a href="#p-horas">Ver caso <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="#p-ppc">Ver caso PPC <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
         </li>
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
-          <div><span class="q">02</span><h4>Ferramentas e sistemas em produção</h4></div>
-          <div class="a"><strong>GradMent em produção</strong>, com 72 alunos e histórico do SIGAA importado de verdade. Pipeline de horas complementares em <strong>Docker numa VM AWS</strong>, em piloto com os primeiros estudantes, sem login e sem guardar dado pessoal. Conversor de PPC empacotado com script de implantação para o time do GradMent. A rotina de horas também virou <strong>skill própria do Claude Code</strong>.
+          <div><span class="q">02</span><h4>Ferramentas e sistemas, por estágio</h4></div>
+          <div class="a">Três projetos, em três estágios diferentes — implantação, piloto e uso efetivo não são a mesma coisa:<ul class="stages"><li><span class="stage prod">Em produção</span><span><strong>GradMent:</strong> 72 alunos cadastrados, 40 com histórico do SIGAA importado. Sem métrica de uso recorrente.</span></li><li><span class="stage pilot">Implantado · piloto</span><span><strong>Horas complementares:</strong> Docker numa VM AWS, em piloto com os primeiros estudantes, sem login e sem guardar dado pessoal. Adesão ainda não medida.</span></li><li><span class="stage repro">Implantação reproduzível</span><span><strong>PPC → GradMent:</strong> ferramenta interna empacotada, com script de implantação para o time do GradMent. Sem comprovação pública de uso contínuo pela equipe.</span></li></ul>A rotina de horas também virou <strong>skill própria do Claude Code</strong>.
             <div class="proof"><a href="#gradment">GradMent <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="https://github.com/catarina051/horas-complementares-ia" target="_blank" rel="noopener">horas-complementares-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://github.com/catarina051/ppc-gradment-ia" target="_blank" rel="noopener">ppc-gradment-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a></div></div>
         </li>
         <li class="check">
@@ -580,8 +585,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </li>
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
-          <div><span class="q">04</span><h4>Agentes de IA aplicados a problemas reais</h4></div>
-          <div class="a">Três agentes — <strong>extratora, auditora e juíza</strong>, cada um num provedor diferente — destravam o maior gargalo de crescimento do GradMent: cadastrar o curso de cada nova universidade. Comparado a um único LLM de ponta (US$ 3,08/PPC), o pipeline acerta <strong>98,0% vs 57,1%</strong> na classificação obrigatória/optativa e entrega um JSON que o produto aceita, <strong>a custo zero</strong>.
+          <div><span class="q">04</span><h4>Pipeline multi-LLM aplicado a um problema real</h4></div>
+          <div class="a">O PPC → GradMent é um <strong>pipeline multi-LLM com papéis especializados</strong>: <strong>extratora, auditora e juíza</strong>, cada uma num provedor diferente. O <strong>n8n coordena o workflow</strong>, em etapas fixas; os modelos executam tarefas específicas, e a juíza só é acionada quando extratora e auditora divergem. Ataca o maior gargalo de crescimento do GradMent: cadastrar o curso de cada nova universidade. Comparado a um único LLM de ponta (US$ 3,08/PPC), o pipeline acerta <strong>98,0% vs 57,1%</strong> na classificação obrigatória/optativa e entrega um JSON que o produto aceita, <strong>a custo zero</strong>.
             <div class="proof"><a href="#p-ppc">Ver arquitetura <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
         </li>
         <li class="check">
@@ -604,7 +609,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </li>
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
-          <div><span class="q">07</span><h4>Orquestração de agentes e múltiplos LLMs</h4></div>
+          <div><span class="q">07</span><h4>Orquestração de múltiplos LLMs em workflows</h4></div>
           <div class="a">Cada papel do pipeline troca de provedor sem mudar código: <strong>Gemini, OpenAI (GPT), Anthropic (Claude), Groq, OpenRouter e Mistral</strong>, com <em>fallback</em> automático. Medido em produção: Gemini + Nemotron + GPT-OSS 120B; Claude Opus como linha de base comparativa. No dia a dia, desenvolvo com Claude Code e skills próprias.
             <div class="proof"><a href="#p-ppc">Pipeline multi-LLM <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="#p-skillcord">Skillcord <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
         </li>
@@ -665,12 +670,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </div>
       </div>
       <div>
-        <div class="case-tags"><span class="tag g">Agentes multi-LLM</span><span class="tag">n8n</span><span class="tag">Prompt engineering</span><span class="tag">Problema de negócio</span></div>
-        <h3>PPC → GradMent: três IAs que discordam de propósito</h3>
-        <p class="pitch">A IA que leva o GradMent a outras universidades: transforma o projeto pedagógico de qualquer curso na matriz curricular que o produto importa.</p>
+        <div class="case-tags"><span class="tag g">Pipeline multi-LLM</span><span class="tag">n8n</span><span class="tag">Prompt engineering</span><span class="tag">Problema de negócio</span></div>
+        <h3>PPC → GradMent: três LLMs com papéis fixos, e uma juíza para as divergências</h3>
+        <p class="pitch">Pipeline multi-LLM com papéis especializados (extratora, auditora e juíza) para levar o GradMent a outras universidades: transforma o projeto pedagógico de qualquer curso na matriz curricular que o produto importa.</p>
         <dl class="psr">
           <div><dt>Problema</dt><dd>O GradMent só aceitava o layout do CEFET-MG. Cada nova universidade exigia digitar à mão <strong>~100 disciplinas e 100+ pré-requisitos</strong> — um gargalo direto de crescimento.</dd></div>
-          <div><dt>Solução</dt><dd>Duas IAs leem o PPC em <strong>sentidos opostos</strong>; o código compara; só as divergências vão para uma <strong>juíza em outro provedor</strong>, que precisa citar a página. Um validador determinístico barra ciclos e erros de tipo antes de qualquer JSON sair.</dd></div>
+          <div><dt>Solução</dt><dd>Um workflow no <strong>n8n</strong> coordena as etapas. A extratora e a auditora leem o PPC em <strong>sentidos opostos</strong>; o código compara; só as divergências acionam a <strong>juíza, em outro provedor</strong>, que precisa citar a página. Um validador determinístico barra ciclos e erros de tipo antes de qualquer JSON sair.</dd></div>
+          <div><dt>Autonomia</dt><dd>Fluxo e papéis definidos por mim: cada modelo executa uma tarefa específica. O sistema <strong>não planeja passos nem escolhe ferramentas por conta própria</strong>; a ordem das etapas e o acionamento da juíza são regras do workflow.</dd></div>
           <div><dt>Aprendizado</dt><dd>Duas IAs concordando não quer dizer que estão certas: quando o <em>fallback</em> colocou as duas no mesmo modelo, elas erraram igual. Diversidade de provedor virou regra.</dd></div>
         </dl>
         <div class="metrics">
@@ -686,7 +692,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <a class="btn btn-primary" href="https://github.com/catarina051/ppc-gradment-ia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> Código</a>
           <a class="btn btn-ghost" href="https://gradment.vercel.app" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg> Dashboard de resultados</a>
         </div>
-        <p class="note">9 execuções reais em 05/11/2026, medidas contra gabarito. 43 commits num único dia.</p>
+        <p class="note">9 execuções reais em 05/11/2026, medidas contra gabarito. 43 commits num único dia. Estágio: ferramenta interna com implantação reproduzível (Docker + script de implantação); não há comprovação pública de uso contínuo pela equipe.</p>
       </div>
     </article>
 
@@ -696,7 +702,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <figure class="shot"><img src="assets/horas-resultado.webp" loading="lazy" width="1000" height="1100" alt="Página de resultado com código ECL2023, opção do SIGAA, descrição e cálculo de 24 horas-aula para um certificado fictício"><figcaption>Resultado para um certificado fictício: categoria, opção do SIGAA e cálculo rastreável.</figcaption></figure>
       </div>
       <div>
-        <div class="case-tags"><span class="tag g">Automação que economiza horas</span><span class="tag">Ferramenta deployada</span><span class="tag">n8n + Gemini</span></div>
+        <div class="case-tags"><span class="tag g">Automação que economiza horas</span><span class="tag">Implantada na AWS · piloto</span><span class="tag">n8n + Gemini</span></div>
         <h3>Horas complementares: do certificado ao PDF pronto para o SIGAA</h3>
         <p class="pitch">O aluno envia o certificado; recebe o documento classificado, calculado e pronto para submeter.</p>
         <dl class="psr">
@@ -714,7 +720,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <a class="btn btn-primary" href="https://github.com/catarina051/horas-complementares-ia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> Código</a>
           <a class="btn btn-ghost" href="https://lnkd.in/p/dp4rEizz" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Vídeo do processo</a>
         </div>
-        <p class="note">Amostra pequena, medida pela autora. A projeção de ~99 h economizadas por semestre é uma estimativa teórica: a adesão ainda não foi medida.</p>
+        <p class="note">Estágio: implantada em Docker numa VM AWS, em piloto com os primeiros estudantes. Amostra pequena, medida pela autora. A projeção de ~99 h economizadas por semestre é uma estimativa teórica: a adesão ainda não foi medida.</p>
       </div>
     </article>
 
@@ -813,7 +819,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <p>Em destaque, o que está em projeto público. Escolho a ferramenta mais simples que resolve — e troco de provedor sem reescrever o fluxo.</p>
     </div>
     <div class="stack-grid reveal">
-      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-bot"/></svg> LLMs e agentes</h4><p class="why">Orquestração multi-provedor com fallback</p><div class="chips"><span class="chip strong">Gemini</span><span class="chip strong">GPT-OSS 120B · Groq</span><span class="chip strong">Nemotron · OpenRouter</span><span class="chip strong">Claude Opus</span><span class="chip">OpenAI</span><span class="chip">Mistral</span><span class="chip">JSON Schema</span></div></div>
+      <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-bot"/></svg> LLMs e workflows</h4><p class="why">Orquestração multi-provedor com fallback</p><div class="chips"><span class="chip strong">Gemini</span><span class="chip strong">GPT-OSS 120B · Groq</span><span class="chip strong">Nemotron · OpenRouter</span><span class="chip strong">Claude Opus</span><span class="chip">OpenAI</span><span class="chip">Mistral</span><span class="chip">JSON Schema</span></div></div>
       <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-flow"/></svg> Automação</h4><p class="why">Fluxos de ponta a ponta com testes em volta</p><div class="chips"><span class="chip strong">n8n</span><span class="chip strong">Webhooks</span><span class="chip">Tesseract / PyMuPDF OCR</span><span class="chip">Gotenberg</span><span class="chip">Docker</span><span class="chip">AWS</span></div></div>
       <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-wand"/></svg> Vibe coding</h4><p class="why">Da ideia à tela no ar em horas</p><div class="chips"><span class="chip strong">Claude Code</span><span class="chip strong">v0</span><span class="chip">Skills próprias</span><span class="chip">Vercel</span></div></div>
       <div class="stack-box"><h4><svg class="icon" aria-hidden="true"><use href="#i-api"/></svg> Front e APIs</h4><p class="why">Rotas serverless e integrações</p><div class="chips"><span class="chip strong">Next.js</span><span class="chip strong">React</span><span class="chip">TypeScript</span><span class="chip">Tailwind · shadcn/ui</span><span class="chip">API REST</span><span class="chip">API da Meta</span><span class="chip">Flutter</span></div></div>
@@ -847,7 +853,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
     <div class="tl-grid">
       <ol class="timeline reveal">
-        <li class="now"><span class="when">mar/2026 — hoje</span><h4>Fundadora &amp; Product Manager</h4><span class="org">GradMent</span><p>Do questionário com 77 estudantes ao produto em produção com 72 alunos. Roadmap, precificação do Plus, equipe de 3 estudantes em Scrum, Sebrae Supernova 2026, registro no INPI e documentação LGPD. Claude e Claude Code no processo, com validação humana. <a href="#gradment">Ver o caso</a></p></li>
+        <li class="now"><span class="when">mar/2026 — hoje</span><h4>Fundadora &amp; Product Manager</h4><span class="org">GradMent</span><p>Do questionário com 77 estudantes ao produto em produção, com 72 alunos cadastrados e 40 históricos importados. Roadmap, precificação do Plus, equipe de 3 estudantes em Scrum, Sebrae Supernova 2026, registro no INPI e documentação LGPD. Claude e Claude Code no processo, com validação humana. <a href="#gradment">Ver o caso</a></p></li>
         <li class="now"><span class="when">jan/2026 — hoje</span><h4>Bolsista FAPEMIG · Produto e Mobile</h4><span class="org">CEFET-MG · FilaZero (SUS)</span><p>Entrevistas com profissionais de saúde, fluxo em BPMN, protótipos no Figma guiados por WCAG 2.1 e eMAG, arquitetura em 4 módulos e telas em Flutter.</p></li>
         <li><span class="when">mai — ago/2025</span><h4>Instrutora de informática</h4><span class="org">CEFET-MG · Programa Mulheres Mil</span><p>Curso de 260 h para mulheres em vulnerabilidade social, turmas de 16 a mais de 50 anos.</p></li>
         <li><span class="when">jun — nov/2024</span><h4>Desenvolvedora web</h4><span class="org">Zé do Lead</span><p>Integração com a API da Meta para trazer métricas de leads à plataforma; React.js e PHP em time ágil.</p></li>
