@@ -24,6 +24,7 @@
   --brown:#90694D;
   --line:#D8CFBE; --line-strong:#B9AE98;
   --on-green:#F0EADE;
+  --gm-bg:#2D493D; --gm-ink:#F0EADE; --gm-muted:#C9D3C9;
   --shadow:0 1px 2px rgba(36,36,36,.06),0 8px 24px -12px rgba(45,73,61,.25);
   --radius:14px; --radius-sm:8px;
   --font-h:"Space Grotesk",system-ui,sans-serif;
@@ -40,6 +41,7 @@
     --brown:#C49A78;
     --line:#2A3B32; --line-strong:#3C5146;
     --on-green:#0F1713;
+    --gm-bg:#1B2F26; --gm-ink:#EFE8DA; --gm-muted:#B5C2B8;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
     color-scheme:dark;
   }
@@ -52,6 +54,7 @@
   --brown:#C49A78;
   --line:#2A3B32; --line-strong:#3C5146;
   --on-green:#0F1713;
+  --gm-bg:#1B2F26; --gm-ink:#EFE8DA; --gm-muted:#B5C2B8;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
   color-scheme:dark;
 }
@@ -167,7 +170,7 @@ section.alt{background:var(--bg-2)}
 .case:first-of-type{border-top:0;padding-top:0}
 .case.flip .case-media{order:2}
 .case-media{position:sticky;top:96px}
-.shot{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface-2);box-shadow:var(--shadow)}
+.shot{margin:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface-2);box-shadow:var(--shadow)}
 .shot img{width:100%}
 .shot figcaption{font-size:.8rem;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line);background:var(--surface)}
 .case-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
@@ -212,7 +215,8 @@ section.alt{background:var(--bg-2)}
 .card p{color:var(--ink-2);font-size:.95rem}
 .card .mini{display:flex;flex-wrap:wrap;gap:6px 12px;font-family:var(--font-m);font-size:.74rem;color:var(--green);margin-top:auto;padding-top:6px}
 .card .more{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.9rem;text-decoration:none;margin-top:4px}
-@media (max-width:900px){.grid3{grid-template-columns:1fr}}
+.grid3.grid2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:900px){.grid3,.grid3.grid2{grid-template-columns:1fr}}
 
 /* Prompt principles */
 .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
@@ -276,6 +280,79 @@ section.alt{background:var(--bg-2)}
 footer{padding:32px 0 48px;color:var(--muted);font-size:.85rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
+/* GradMent */
+.gm{background:var(--gm-bg);color:var(--gm-ink);padding-bottom:72px}
+.gm .eyebrow{color:var(--gm-muted)}
+.gm-head{max-width:820px}
+.gm-head h2{font-size:clamp(2rem,4.4vw,3.2rem);margin:16px 0 18px;color:var(--gm-ink)}
+.gm-head p{font-size:1.1rem;color:var(--gm-muted);max-width:66ch}
+.gm .amp{color:var(--amber)}
+.btn-amber{background:var(--amber);color:#1F1A12}
+.btn-amber:hover{background:#D49650;color:#1F1A12}
+.btn-ghost-light{border-color:color-mix(in srgb,var(--gm-ink) 35%,transparent);color:var(--gm-ink)}
+.btn-ghost-light:hover{border-color:var(--amber);color:var(--gm-ink);background:color-mix(in srgb,var(--gm-ink) 8%,transparent)}
+.cycle{margin-top:56px}
+.cycle-label{display:block;font-family:var(--font-m);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gm-muted);margin-bottom:14px}
+.chain{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;counter-reset:c}
+.chain li{position:relative;padding:10px 16px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gm-ink) 25%,transparent);font-weight:600;font-size:.95rem}
+.chain li:not(:last-child)::after{content:"→";margin-left:12px;color:var(--amber)}
+.chain li:last-child{background:var(--amber);border-color:var(--amber);color:#1F1A12}
+.gm-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border-top:1px solid color-mix(in srgb,var(--gm-ink) 22%,transparent)}
+.gm-stats div{padding:22px 20px 0 0}
+.gm-stats b{display:block;font-family:var(--font-h);font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1;color:var(--gm-ink)}
+.gm-stats span{display:block;margin-top:8px;font-size:.9rem;color:var(--gm-muted)}
+.gm-src{margin-top:18px;font-size:.8rem;color:var(--muted);font-style:italic}
+.gm .gm-src{color:var(--gm-muted)}
+@media (max-width:900px){.gm-stats{grid-template-columns:1fr 1fr;gap:0 16px}}
+
+.gm-body{padding-top:72px}
+.gallery{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:start}
+.gal-tabs{display:flex;flex-direction:column;gap:6px}
+.gal-tabs button{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 14px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--ink-2);font:600 .95rem var(--font-b);text-align:left;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
+.gal-tabs button span{font-family:var(--font-m);font-size:.72rem;color:var(--muted)}
+.gal-tabs button:hover{background:var(--surface)}
+.gal-tabs button[aria-selected="true"]{background:var(--surface-2);border-color:var(--green);color:var(--green)}
+.gal-tabs button[aria-selected="true"] span{color:var(--amber-ink)}
+.gal-view img{aspect-ratio:16/9;object-fit:cover;width:100%}
+@media (max-width:900px){.gallery{grid-template-columns:1fr}.gal-tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.gal-tabs button{flex:none}}
+
+.journey{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:64px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.step-n{font-family:var(--font-m);font-size:.74rem;color:var(--amber-ink);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+.step h3{font-size:1.35rem;margin:10px 0 10px}
+.step p{color:var(--ink-2)}
+.step strong{color:var(--ink)}
+@media (max-width:900px){.journey{grid-template-columns:1fr}}
+
+.traction{margin-top:40px;background:var(--gm-bg);color:var(--gm-ink);border-radius:20px;padding:36px}
+.traction .eyebrow.light{color:var(--gm-muted)}
+.tr-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;align-items:baseline}
+.tr-head p{color:var(--gm-muted);font-size:.88rem}
+.tr-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:24px}
+.tr-grid b{display:block;font-family:var(--font-h);font-size:clamp(1.6rem,3vw,2.3rem);line-height:1}
+.tr-grid div:first-child b{color:var(--amber)}
+.tr-grid span{display:block;font-size:.84rem;color:var(--gm-muted);margin-top:8px;line-height:1.35}
+@media (max-width:900px){.traction{padding:26px 20px}.tr-grid{grid-template-columns:repeat(2,1fr);gap:22px 16px}}
+
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:72px;align-items:start}
+.scale h3{font-size:clamp(1.5rem,2.8vw,2rem);margin:12px 0 14px}
+.scale p{color:var(--ink-2)}
+.road{list-style:none;margin:0;padding:0;position:relative}
+.road::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;width:2px;background:repeating-linear-gradient(var(--green) 0 6px,transparent 6px 12px)}
+.road li{position:relative;padding:0 0 22px 40px}
+.road li::before{content:"";position:absolute;left:4px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--green)}
+.road li:first-child::before{background:var(--amber);border-color:var(--amber)}
+.road b{display:block;font-family:var(--font-h);font-size:1.05rem}
+.road span{color:var(--muted);font-size:.9rem}
+@media (max-width:900px){.scale{grid-template-columns:1fr;gap:28px}}
+
+.decisions{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.dec{border-top:3px solid var(--green);background:var(--surface);border-radius:0 0 var(--radius) var(--radius);padding:24px}
+.dec h4{font-size:1.12rem;margin:10px 0 10px}
+.dec p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:900px){.decisions{grid-template-columns:1fr}}
+.gm-quote{margin:64px 0 0;max-width:820px}
+
 /* Reveal (só com JS e sem reduced-motion) */
 .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .js .reveal.in{opacity:1;transform:none}
@@ -315,8 +392,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <a class="brand" href="#topo" aria-label="Catarina Gonçalves, início"><span class="brand-mark" aria-hidden="true">CG</span><span>Catarina Gonçalves</span></a>
     <nav class="primary" id="menu" aria-label="Seções">
       <ul>
+        <li><a href="#gradment">GradMent</a></li>
         <li><a href="#checklist">Para recrutadores</a></li>
-        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#projetos">Projetos de IA</a></li>
         <li><a href="#prompts">Prompt engineering</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#trajetoria">Trajetória</a></li>
@@ -338,12 +416,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div>
         <span class="eyebrow">AI Builder · GenAI</span>
         <h1>Produto <span class="amp">&amp;</span> IA, da pesquisa com usuários ao deploy
-          <span class="sub">Agentes, automações e dashboards que resolvem problemas reais — construídos em dias e medidos contra gabarito.</span></h1>
-        <p class="lede">Sou Catarina, estudante de Engenharia de Computação no CEFET-MG e fundadora do <strong>GradMent</strong>, plataforma de planejamento acadêmico em produção. Orquestro LLMs de provedores diferentes (Gemini, GPT-OSS, Nemotron, Claude) com n8n, e uso v0 e Claude Code para colocar uma ideia no ar sem esperar meses.</p>
+          <span class="sub">Fundei o GradMent, usado por 72 alunos, e construo com IA os agentes e as automações que o fazem crescer.</span></h1>
+        <p class="lede">Sou Catarina, estudante de Engenharia de Computação no CEFET-MG. No <strong>GradMent</strong> fui da pesquisa com 77 estudantes ao produto em produção, ao teste de modelo de negócio e ao Sebrae Supernova. Para levá-lo a outras universidades, orquestrei LLMs de provedores diferentes com n8n — e uso v0 e Claude Code para colocar ideias no ar em dias.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#checklist">Ver respostas para recrutadores <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
-          <a class="btn btn-ghost" href="https://github.com/catarina051" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg> GitHub</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/catarina-rodrigues-gon%C3%A7alves-b42011297/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-in"/></svg> LinkedIn</a>
+          <a class="btn btn-primary" href="#gradment">Conhecer o GradMent <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+          <a class="btn btn-ghost" href="#checklist">Respostas para recrutadores</a>
+          <a class="icon-btn" href="https://github.com/catarina051" target="_blank" rel="noopener" aria-label="GitHub de Catarina"><svg class="icon" aria-hidden="true"><use href="#i-gh"/></svg></a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/catarina-rodrigues-gon%C3%A7alves-b42011297/" target="_blank" rel="noopener" aria-label="LinkedIn de Catarina"><svg class="icon" aria-hidden="true"><use href="#i-in"/></svg></a>
         </div>
         <div class="tags"><span>Fundadora &amp; PM do GradMent</span><span>Engenharia de Computação · CEFET-MG</span><span>Formatura dez/2028</span></div>
       </div>
@@ -353,11 +432,112 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
     </div>
     <div class="kpis" role="list">
-      <div class="kpi" role="listitem"><b>22 → &lt;2 min</b><span>por certificado de horas complementares com n8n + Gemini</span><small>medido pela autora · piloto em uso</small></div>
-      <div class="kpi" role="listitem"><b>92,5%</b><span>de acerto da IA juíza nas divergências entre dois LLMs</span><small>vs 66,2% no mesmo modelo</small></div>
-      <div class="kpi" role="listitem"><b>99/99</b><span>disciplinas extraídas de um PPC real de 190 páginas</span><small>7 min 12 s por PPC · custo zero</small></div>
       <div class="kpi" role="listitem"><b>72</b><span>alunos cadastrados no GradMent, produto em produção</span><small>40 históricos importados · nov/2026</small></div>
+      <div class="kpi" role="listitem"><b>3,0 → 4,6</b><span>confiança do aluno na grade montada, sem e com o GradMent</span><small>teste com 7 usuários do beta</small></div>
+      <div class="kpi" role="listitem"><b>99/99</b><span>disciplinas extraídas por IA de um PPC real, para abrir novas universidades</span><small>3 LLMs · 7 min por PPC · custo zero</small></div>
+      <div class="kpi" role="listitem"><b>22 → &lt;2 min</b><span>por certificado de horas complementares com n8n + Gemini</span><small>medido pela autora · piloto em uso</small></div>
     </div>
+  </div>
+</section>
+
+<!-- GRADMENT -->
+<section class="block gm" id="gradment">
+  <div class="wrap">
+    <div class="gm-head reveal">
+      <span class="eyebrow">Meu maior projeto · em produção</span>
+      <h2>GradMent: o aluno vê o caminho <span class="amp">antes</span> de entrar nele</h2>
+      <p>Plataforma de planejamento acadêmico para estudantes de engenharia de universidades públicas. Sou fundadora e Product Manager: conduzi a pesquisa, defini o produto e o modelo de negócio, desenvolvo o front-end e lidero uma equipe de três estudantes do CEFET-MG.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-amber" href="https://gradment.com.br" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg> gradment.com.br</a>
+        <a class="btn btn-ghost-light" href="https://youtu.be/dxQApeMtuUo" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Pitch Sebrae Supernova</a>
+        <a class="btn btn-ghost-light" href="https://www.youtube.com/watch?v=z5_0VSG5xW4" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Demo do produto</a>
+      </div>
+    </div>
+
+    <div class="cycle reveal" aria-label="O ciclo que o GradMent quer interromper">
+      <span class="cycle-label">O ciclo que um coordenador de engenharia nos descreveu</span>
+      <ol class="chain">
+        <li>Adia a disciplina-chave</li><li>Reprova</li><li>O rendimento cai</li><li>Perde a vaga na turma</li><li>É desligado do curso</li>
+      </ol>
+    </div>
+
+    <div class="gm-stats reveal">
+      <div><b>71%</b><span>dos estudantes ouvidos se dizem atrasados</span></div>
+      <div><b>47%</b><span>acham difícil ver o que falta para se formar</span></div>
+      <div><b>1 em 3</b><span>dos que reprovaram pensou em trancar ou largar</span></div>
+      <div><b>≈ 25%</b><span>de aprovação em Cálculo I num curso do CEFET-MG</span></div>
+    </div>
+    <p class="gm-src reveal">Questionário com 77 estudantes de engenharia (ago–out/2026) e entrevistas com 7 coordenações em 6 instituições.</p>
+  </div>
+</section>
+
+<section class="block gm-body" aria-label="GradMent em detalhe">
+  <div class="wrap">
+    <!-- Galeria do produto -->
+    <div class="gallery reveal">
+      <div class="gal-tabs" role="tablist" aria-label="Telas do GradMent">
+        <button role="tab" aria-selected="true" aria-controls="gal-panel" data-img="assets/gm-01-dashboard.webp" data-cap="Dashboard: progresso no curso e disciplinas a avaliar."><span>01</span>Dashboard</button>
+        <button role="tab" aria-selected="false" aria-controls="gal-panel" data-img="assets/gm-02-importar-historico.webp" data-cap="Importação: o aluno envia o histórico do SIGAA em PDF e confere antes de importar."><span>02</span>Importar histórico</button>
+        <button role="tab" aria-selected="false" aria-controls="gal-panel" data-img="assets/gm-03-grade-curricular.webp" data-cap="Grade curricular: concluídas, disponíveis e bloqueadas por pré-requisito."><span>03</span>Grade curricular</button>
+        <button role="tab" aria-selected="false" aria-controls="gal-panel" data-img="assets/gm-04-planejar-periodo.webp" data-cap="Planejar o período: formatura estimada, avisos de correquisito e dificuldade segundo os veteranos."><span>04</span>Planejar o período</button>
+        <button role="tab" aria-selected="false" aria-controls="gal-panel" data-img="assets/gm-05-comparar-alternativas.webp" data-cap="Comparar alternativas: grades A e B lado a lado, com gargalos e carga semanal."><span>05</span>Comparar alternativas</button>
+        <button role="tab" aria-selected="false" aria-controls="gal-panel" data-img="assets/gm-06-avaliacoes.webp" data-cap="Avaliações: o aluno avalia as disciplinas que concluiu e alimenta a dificuldade vista pelos próximos."><span>06</span>Avaliações</button>
+      </div>
+      <figure class="shot gal-view" id="gal-panel" role="tabpanel" aria-live="polite">
+        <img src="assets/gm-01-dashboard.webp" width="1200" height="675" alt="Tela do GradMent: Dashboard: progresso no curso e disciplinas a avaliar.">
+        <figcaption>Dashboard: progresso no curso e disciplinas a avaliar.</figcaption>
+      </figure>
+    </div>
+    <p class="gm-src">Capturas de uma conta de demonstração com dados fictícios. Front-end em Next.js, React, TypeScript e Tailwind; API REST em CodeIgniter 4.</p>
+
+    <!-- Jornada -->
+    <div class="journey">
+      <article class="step reveal"><span class="step-n">01 · Descoberta</span><h3>Ouvir antes de construir</h3>
+        <p>Questionário com <strong>77 estudantes</strong>, entrevistas com <strong>7 coordenações em 6 instituições</strong> e pesquisa com veteranos. Hoje o aluno se informa com veteranos (86%), grupos de WhatsApp (78%) e planilhas de colegas (35%) — e nenhum desses canais junta dificuldade, pré-requisitos e simulação da grade.</p></article>
+      <article class="step reveal"><span class="step-n">02 · Validação</span><h3>Teste sem e com o produto</h3>
+        <p>Sete usuários do beta montaram a grade das duas formas. <strong>4 de 7</strong> corrigiram uma disciplina esquecida que devia ser cursada junto; <strong>4 de 7</strong> trocaram de disciplina pela avaliação dos veteranos; a confiança na grade subiu de <strong>3,0 para 4,6</strong> (de 5).</p></article>
+      <article class="step reveal"><span class="step-n">03 · Modelo de negócio</span><h3>Freemium, com objeção ouvida</h3>
+        <p>O básico é gratuito; o <strong>Plus</strong> (em desenvolvimento) recomenda a grade e avisa as notas. Ouvimos: <em>"pagar todo mês por algo que uso na matrícula?"</em> — então os planos longos ficaram mais baratos (R$ 29,90 → 19,90/mês no anual) e o aviso de notas dá motivo de uso no semestre todo. <strong>6 de 7</strong> entraram na lista de espera: interesse, ainda não pagamento.</p></article>
+      <article class="step reveal"><span class="step-n">04 · Deploy e operação</span><h3>Produto real, com regras reais</h3>
+        <p>Em produção com importação do histórico do SIGAA, política de privacidade e termos publicados, documentação LGPD e registro no INPI. Equipe em Scrum; levei o projeto ao <strong>Sebrae Supernova 2026</strong> e a um artigo na MOCITEC MG 2026.</p></article>
+    </div>
+
+    <!-- Tração -->
+    <div class="traction reveal">
+      <div class="tr-head"><span class="eyebrow light">Tração · banco de produção, 07/11/2026</span><p>Números de um produto pequeno e novo, não de escala — sem contas de teste.</p></div>
+      <div class="tr-grid">
+        <div><b>72</b><span>alunos cadastrados</span></div>
+        <div><b>40</b><span>enviaram o histórico</span></div>
+        <div><b>1.739</b><span>linhas de histórico importadas</span></div>
+        <div><b>121</b><span>avaliações de disciplinas</span></div>
+        <div><b>315</b><span>disciplinas no catálogo</span></div>
+        <div><b>18</b><span>cadastros numa única recepção de calouros</span></div>
+      </div>
+    </div>
+
+    <!-- Escala com IA -->
+    <div class="scale reveal">
+      <div>
+        <span class="eyebrow">Escala com IA</span>
+        <h3>Como o GradMent sai de Leopoldina</h3>
+        <p>Cadastrar um curso novo era trabalho manual. Construí o pipeline de agentes <a href="#p-ppc">PPC → GradMent</a>: três LLMs convertem o projeto pedagógico de qualquer universidade na matriz que o produto importa. A segunda universidade (UNIFEI) saiu com 98,6% das disciplinas corretas.</p>
+      </div>
+      <ol class="road">
+        <li><b>CEFET-MG Leopoldina</b><span>~540 alunos de engenharia · onde começamos</span></li>
+        <li><b>Demais campi do CEFET-MG</b><span>~7.500 alunos em 10 campi</span></li>
+        <li><b>Eng. Civil da UFAC</b><span>coordenador já autorizou a divulgação</span></li>
+        <li><b>64 instituições com SIGAA</b><span>o mesmo sistema acadêmico do CEFET-MG</span></li>
+      </ol>
+    </div>
+
+    <!-- Decisões -->
+    <div class="decisions">
+      <article class="dec reveal"><span class="step-n">Decisão de fundadora</span><h4>Incubar só depois do primeiro clique em "assinar"</h4><p>Pesquisamos o custo de abrir um CNPJ e decidimos esperar o sinal certo: quando alguém clicar em "assinar", mesmo antes de a assinatura funcionar, sabemos que o GradMent pode virar empresa.</p></article>
+      <article class="dec reveal"><span class="step-n">Decisão ética</span><h4>Não rotular probabilidade de evasão</h4><p>Uma professora que pesquisou evasão me alertou: é dado sensível e depende de fatores pessoais. O GradMent mostra os dados ao coordenador e deixa a conclusão com ele.</p></article>
+      <article class="dec reveal"><span class="step-n">Pitch feito com IA</span><h4>Vídeo do Supernova editado em código</h4><p>Motion design montado com <strong>Remotion e Claude Code</strong>, telas capturadas por <strong>Playwright</strong> com dados fictícios e cada número checado contra o Business Model Canvas entregue.</p></article>
+    </div>
+
+    <blockquote class="quote gm-quote reveal">A pessoa que sou hoje, e o que decidi fazer com a minha vida — trabalhar com produto —, vieram do GradMent.<cite>— Catarina, no caso do produto</cite></blockquote>
   </div>
 </section>
 
@@ -381,25 +561,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
           <div><span class="q">02</span><h4>Ferramentas internas deployadas</h4></div>
-          <div class="a">Pipeline de horas complementares rodando em <strong>Docker numa VM AWS</strong>, em piloto com os primeiros estudantes, sem login e sem guardar dado pessoal. Conversor de PPC empacotado com um script de implantação para o time do GradMent. A mesma rotina também virou <strong>skill própria do Claude Code</strong>.
-            <div class="proof"><a href="https://github.com/catarina051/horas-complementares-ia" target="_blank" rel="noopener">horas-complementares-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://github.com/catarina051/ppc-gradment-ia" target="_blank" rel="noopener">ppc-gradment-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a></div></div>
+          <div class="a"><strong>GradMent em produção</strong>, com 72 alunos e histórico do SIGAA importado de verdade. Pipeline de horas complementares em <strong>Docker numa VM AWS</strong>, em piloto com os primeiros estudantes, sem login e sem guardar dado pessoal. Conversor de PPC empacotado com script de implantação para o time do GradMent. A rotina de horas também virou <strong>skill própria do Claude Code</strong>.
+            <div class="proof"><a href="#gradment">GradMent <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="https://github.com/catarina051/horas-complementares-ia" target="_blank" rel="noopener">horas-complementares-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://github.com/catarina051/ppc-gradment-ia" target="_blank" rel="noopener">ppc-gradment-ia <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a></div></div>
         </li>
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
           <div><span class="q">03</span><h4>Dashboards funcionais</h4></div>
-          <div class="a">Dois dashboards <strong>no ar na Vercel</strong>, lendo dados reais dos pipelines e revalidando sozinhos; e uma plataforma de dados com <strong>6 dashboards por papel no Metabase</strong> (Airflow + dbt + PostgreSQL).
+          <div class="a">O próprio GradMent é um painel: progresso no curso, formatura estimada e comparação de grades para o aluno. Além dele, dois dashboards <strong>no ar na Vercel</strong>, lendo dados reais dos pipelines e revalidando sozinhos, e uma plataforma de dados com <strong>6 dashboards por papel no Metabase</strong> (Airflow + dbt + PostgreSQL).
             <div class="proof"><a href="https://gradment.vercel.app" target="_blank" rel="noopener">gradment.vercel.app <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://termometro-psi.vercel.app" target="_blank" rel="noopener">termometro-psi.vercel.app <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="#p-data">Plataforma de dados <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
         </li>
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
           <div><span class="q">04</span><h4>Agentes que resolvem problemas de negócio</h4></div>
-          <div class="a">Três agentes — <strong>extratora, auditora e juíza</strong>, cada um num provedor diferente — destravam a expansão do GradMent para outras universidades. Comparado a um único LLM de ponta (US$ 3,08/PPC), o pipeline acerta <strong>98,0% vs 57,1%</strong> na classificação obrigatória/optativa e entrega um JSON que o produto aceita, <strong>a custo zero</strong>.
+          <div class="a">Três agentes — <strong>extratora, auditora e juíza</strong>, cada um num provedor diferente — destravam o maior gargalo de crescimento do GradMent: cadastrar o curso de cada nova universidade. Comparado a um único LLM de ponta (US$ 3,08/PPC), o pipeline acerta <strong>98,0% vs 57,1%</strong> na classificação obrigatória/optativa e entrega um JSON que o produto aceita, <strong>a custo zero</strong>.
             <div class="proof"><a href="#p-ppc">Ver arquitetura <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
         </li>
         <li class="check">
           <span class="check-ico" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
           <div><span class="q">05</span><h4>Demos de produtos construídos do zero em dias</h4></div>
-          <div class="a">O pipeline de PPC e seu dashboard foram construídos num único dia (<strong>43 + 3 commits em 05/11/2026</strong>), com Claude Code e v0. O Termômetro do Semestre virou um site navegável com uma rota de IA. Há GIF da execução real e vídeos de demo.
+          <div class="a">O pipeline de PPC e seu dashboard foram construídos num único dia (<strong>43 + 3 commits em 05/11/2026</strong>), com Claude Code e v0. O Termômetro do Semestre virou um site navegável com uma rota de IA. O GradMent tem vídeo de demo e um pitch em motion design montado em código com Remotion e Claude Code.
             <div class="proof"><a href="#p-ppc">GIF da execução <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="https://www.youtube.com/watch?v=z5_0VSG5xW4" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Demo GradMent</a><a href="https://lnkd.in/p/dp4rEizz" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Vídeo horas complementares</a></div></div>
         </li>
       </ul>
@@ -479,7 +659,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div>
         <div class="case-tags"><span class="tag g">Agentes multi-LLM</span><span class="tag">n8n</span><span class="tag">Prompt engineering</span><span class="tag">Problema de negócio</span></div>
         <h3>PPC → GradMent: três IAs que discordam de propósito</h3>
-        <p class="pitch">Um conversor que transforma o projeto pedagógico de qualquer universidade na matriz curricular que o GradMent importa.</p>
+        <p class="pitch">A IA que leva o GradMent a outras universidades: transforma o projeto pedagógico de qualquer curso na matriz curricular que o produto importa.</p>
         <dl class="psr">
           <div><dt>Problema</dt><dd>O GradMent só aceitava o layout do CEFET-MG. Cada nova universidade exigia digitar à mão <strong>~100 disciplinas e 100+ pré-requisitos</strong> — um gargalo direto de crescimento.</dd></div>
           <div><dt>Solução</dt><dd>Duas IAs leem o PPC em <strong>sentidos opostos</strong>; o código compara; só as divergências vão para uma <strong>juíza em outro provedor</strong>, que precisa citar a página. Um validador determinístico barra ciclos e erros de tipo antes de qualquer JSON sair.</dd></div>
@@ -580,15 +760,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
     </article>
 
-    <div class="grid3">
-      <article class="card reveal" id="p-gradment">
-        <span class="tag g" style="align-self:flex-start">Produto em produção</span>
-        <h4>GradMent</h4>
-        <p>Planejador de grade que avisa quando uma reprovação vai atrasar a formatura. Importa o histórico do SIGAA em PDF. Sou fundadora e PM: pesquisa com veteranos, roadmap, precificação do Plus e front em React/TS.</p>
-        <div class="mini"><span>72 cadastrados</span><span>1.739 linhas de histórico</span><span>6/7 na lista de espera do Plus</span></div>
-        <a class="more" href="https://gradment.com.br" target="_blank" rel="noopener">gradment.com.br <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
-        <a class="more" href="https://youtu.be/dxQApeMtuUo" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Pitch Sebrae Supernova</a>
-      </article>
+    <div class="grid3 grid2">
       <article class="card reveal" id="p-data">
         <span class="tag g" style="align-self:flex-start">Dados &amp; dashboards</span>
         <h4>GradMent Data Platform</h4>
@@ -667,7 +839,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
     <div class="tl-grid">
       <ol class="timeline reveal">
-        <li class="now"><span class="when">mar/2026 — hoje</span><h4>Fundadora &amp; Product Manager</h4><span class="org">GradMent</span><p>Pesquisa e validação com veteranos, roadmap, precificação do Plus, equipe em Scrum, registro no INPI e documentação LGPD. Claude e Claude Code no processo, com validação humana.</p></li>
+        <li class="now"><span class="when">mar/2026 — hoje</span><h4>Fundadora &amp; Product Manager</h4><span class="org">GradMent</span><p>Do questionário com 77 estudantes ao produto em produção com 72 alunos. Roadmap, precificação do Plus, equipe de 3 estudantes em Scrum, Sebrae Supernova 2026, registro no INPI e documentação LGPD. Claude e Claude Code no processo, com validação humana. <a href="#gradment">Ver o caso</a></p></li>
         <li class="now"><span class="when">jan/2026 — hoje</span><h4>Bolsista FAPEMIG · Produto e Mobile</h4><span class="org">CEFET-MG · FilaZero (SUS)</span><p>Entrevistas com profissionais de saúde, fluxo em BPMN, protótipos no Figma guiados por WCAG 2.1 e eMAG, arquitetura em 4 módulos e telas em Flutter.</p></li>
         <li><span class="when">mai — ago/2025</span><h4>Instrutora de informática</h4><span class="org">CEFET-MG · Programa Mulheres Mil</span><p>Curso de 260 h para mulheres em vulnerabilidade social, turmas de 16 a mais de 50 anos.</p></li>
         <li><span class="when">jun — nov/2024</span><h4>Desenvolvedora web</h4><span class="org">Zé do Lead</span><p>Integração com a API da Meta para trazer métricas de leads à plataforma; React.js e PHP em time ágil.</p></li>
@@ -719,6 +891,26 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     menuBtn.setAttribute('aria-expanded',open);
   });
   menu.addEventListener('click',function(e){if(e.target.closest('a')){menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
+  // Galeria do GradMent (tabs acessíveis, setas do teclado)
+  var tabs=[].slice.call(document.querySelectorAll('.gal-tabs [role="tab"]'));
+  var view=document.querySelector('.gal-view'),vimg=view&&view.querySelector('img'),vcap=view&&view.querySelector('figcaption');
+  function selectTab(t,focus){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});
+    vimg.src=t.dataset.img;vimg.alt='Tela do GradMent: '+t.dataset.cap;vcap.textContent=t.dataset.cap;
+    if(focus)t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.tabIndex=i===0?0:-1;
+    t.addEventListener('click',function(){selectTab(t)});
+    t.addEventListener('keydown',function(e){
+      var k=e.key,n=null;
+      if(k==='ArrowDown'||k==='ArrowRight')n=tabs[(i+1)%tabs.length];
+      if(k==='ArrowUp'||k==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+      if(k==='Home')n=tabs[0];if(k==='End')n=tabs[tabs.length-1];
+      if(n){e.preventDefault();selectTab(n,true)}
+    });
+  });
+  tabs.forEach(function(t){var p=new Image();p.src=t.dataset.img});
   var els=document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(el){el.classList.add('in')});return}
   var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});
